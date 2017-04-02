@@ -1,4 +1,4 @@
-require 'connect_four/version'
+require_relative "connect_four/version"
 
 module ConnectFour
 
