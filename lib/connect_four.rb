@@ -1,5 +1,10 @@
-require "connect_four/version"
+require 'connect_four/version'
 
 module ConnectFour
-  # Your code goes here...
+
 end
+
+require_relative "./connect_four/Cell.rb"
+require_relative "./connect_four/Player.rb"
+require_relative "./connect_four/Board.rb"
+require_relative "./connect_four/core_extensions.rb"
