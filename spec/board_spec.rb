@@ -1,6 +1,12 @@
 require 'spec_helper'
 module ConnectFour
     describe Board do
+
+      TestCell = Struct.new(:value)
+      let(:x) { TestCell.new('x')}
+      let(:o) { TestCell.new('o')}
+      let(:e) { TestCell.new("")}
+
         context '#initialize' do
             it 'initializes a board with a grid' do
                 expect { Board.new(grid: 'grid') }.to_not raise_error
@@ -26,16 +32,16 @@ module ConnectFour
 
         context '#get_cell' do
             it 'returns the cell based on the (x,y) coordinate' do
-                grid = [
-                    ['', '', '', '', '', '', ''],
-                    ['', '', '', '', '', '', ''],
-                    ['', '', '', '', 'custom', '', ''],
-                    ['', '', '', '', '', '', ''],
-                    ['', '', '', '', '', '', ''],
-                    ['', '', '', '', '', '', '']
-                ]
-                board = Board.new(grid: grid)
-                expect(board.get_cell(2, 4)).to eq 'custom'
+              grid = [
+                  [e,e,e,x,e,e,e],
+                  [e,e,x,e,e,e,e],
+                  [e,x,e,e,e,e,e],
+                  [x,e,e,e,e,e,e],
+                  [x,e,e,e,o,e,e],
+                  [x,e,o,e,o,e,x]
+              ]
+              board = Board.new(grid: grid)
+                expect(board.get_cell(5, 0).value).to eq 'x'
             end
         end
 
@@ -56,10 +62,6 @@ module ConnectFour
             end
         end
 
-        TestCell = Struct.new(:value)
-        let(:x) { TestCell.new('x')}
-        let(:o) { TestCell.new('o')}
-        let(:e) { TestCell.new("")}
 
         context '#game_over' do
             it 'returns :winner if winner? is true' do
