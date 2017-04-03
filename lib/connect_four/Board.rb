@@ -11,7 +11,6 @@ module ConnectFour
 
         def set_cell(x, y, value)
             get_cell(x, y).value = value
-            puts "x:#{x} y:#{y}" #testing purposes
         end
 
         def game_over
@@ -34,11 +33,14 @@ module ConnectFour
         end
 
         def formatted_grid
+            padding = "          "
             empty_cell = "\u25a2"
-            grid.reverse.each do |row|
-                puts row.map { |cell| cell.value.empty? ? '_' : cell.value }.join(' ')
+
+            grid.each do |row|
+                puts "#{padding}#{row.map { |cell| cell.value.empty? ? empty_cell : cell.value }.join(' ')}\n"
             end
-            puts '1 2 3 4 5 6 7'
+            puts "#{padding}-------------"
+            puts "#{padding}1 2 3 4 5 6 7"
         end
 
         private
