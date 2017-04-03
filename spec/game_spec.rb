@@ -57,21 +57,21 @@ module ConnectFour
 
 
         context '#get_move' do
-            it "converts human_move of '1' to [0,5]" do
+            it "converts human_move of '1' to [5,0]" do
                 game = Game.new([john, nick])
-                expect(game.get_move("1")).to eq [0, 5]
+                expect(game.get_move("1")).to eq [5, 0]
             end
-            it "converts human_move of 7 to [6,5]" do
+            it "converts human_move of 7 to [5,6]" do
               game = Game.new([john, nick])
-              expect(game.get_move("7")).to eq [6, 5]
+              expect(game.get_move("7")).to eq [5, 6]
             end
-            it "converts human_move of '1' to [0,4] when 1 piece exists in that column" do
+            it "converts human_move of '1' to [4,0] when 1 piece exists in that column" do
               game = Game.new([john, nick],Board.new(grid: grid))
-              expect(game.get_move("1")).to eq [0,4]
+              expect(game.get_move("1")).to eq [4,0]
             end
-            it "converts human_move of '7' to [6,4] when 1 piece exists in that column" do
+            it "converts human_move of '7' to [4,6] when 1 piece exists in that column" do
               game = Game.new([john, nick],Board.new(grid: grid))
-              expect(game.get_move("7")).to eq [6,4]
+              expect(game.get_move("7")).to eq [4,6]
             end
         end
 
