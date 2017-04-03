@@ -16,7 +16,15 @@ module ConnectFour
         end
 
         def get_move(human_move = gets.chomp)
+            if !human_move.to_i.between?(1,7)
+              until human_move.to_i.between?(1,7)
+                puts "Invalid Column Number. Please Try Again: "
+                human_move = gets.chomp
+              end
             human_move_to_coordinate(human_move)
+            else
+            human_move_to_coordinate(human_move)
+            end
         end
 
         def game_over_message
@@ -44,18 +52,17 @@ module ConnectFour
           end
         end
 
-
         private
 
         def human_move_to_coordinate(human_move) # returns coordinates of first non empty cell in a column
             mapping = {
-                '1' => [0, @board.grid.transpose[0].rindex { |cell| cell.value.empty? }],
-                '2' => [1, @board.grid.transpose[1].rindex { |cell| cell.value.empty? }],
-                '3' => [2, @board.grid.transpose[2].rindex { |cell| cell.value.empty? }],
-                '4' => [3, @board.grid.transpose[3].rindex { |cell| cell.value.empty? }],
-                '5' => [4, @board.grid.transpose[4].rindex { |cell| cell.value.empty? }],
-                '6' => [5, @board.grid.transpose[5].rindex { |cell| cell.value.empty? }],
-                '7' => [6, @board.grid.transpose[6].rindex { |cell| cell.value.empty? }]
+                '1' => [ @board.grid.transpose[0].rindex { |cell| cell.value.empty? } , 0 ],
+                '2' => [ @board.grid.transpose[1].rindex { |cell| cell.value.empty? } , 1 ],
+                '3' => [ @board.grid.transpose[2].rindex { |cell| cell.value.empty? } , 2 ],
+                '4' => [ @board.grid.transpose[3].rindex { |cell| cell.value.empty? } , 3 ],
+                '5' => [ @board.grid.transpose[4].rindex { |cell| cell.value.empty? } , 4 ],
+                '6' => [ @board.grid.transpose[5].rindex { |cell| cell.value.empty? } , 5 ],
+                '7' => [ @board.grid.transpose[6].rindex { |cell| cell.value.empty? } , 6 ]
             }
             mapping[human_move]
         end
